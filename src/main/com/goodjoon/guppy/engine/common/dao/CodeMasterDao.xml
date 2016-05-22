@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goodjoon.guppy.engine.common.dao.CodeMasterDao">
+	
+	<select id="getCodeData" parameterType="CodeMaster" resultType="CodeMaster">
+		SELECT 
+			code_group
+			,code_name
+			,code_option
+			,code_value
+			,display_name
+			,description
+		FROM
+			tbl_code_master
+		<where>
+			<if test="codeGroup != null">
+				code_group = #{codeGroup}
+			</if>
+			<if test="codeName != null">
+				AND code_name = #{codeName}
+			</if>
+			<if test="codeOption != null">
+				AND code_option = #{codeOption}
+			</if>
+		</where>
+	</select>
+
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goodjoon.guppy.engine.service.shop.dao.ShopDao">
+	
+	<insert id="insertShop" parameterType="Shop" >
+	INSERT INTO tbl_shop
+		(
+		id
+		, name
+		, tel_numbers
+		, tel_names
+		, open_hours
+		, biz_comment
+		, short_comment
+		, address
+		, category_codes
+		, keywords
+		)
+	VALUES
+		(
+		#{id}
+		, #{name}
+		, #{phones}
+		, #{phoneNames}
+		, #{businessHours}
+		, #{businessDayComment}
+		, #{shortComment}
+		, #{address}
+		, #{categoryCodes}
+		, #{keywords}
+		)
+	</insert>
+	
+	<insert id="insertShopImages" parameterType="Shop">
+		INSERT INTO tbl_images 
+			(group_id, category_id, owner_id, file_path, active, upload_datetime)
+		VALUES
+		<foreach collection="images" item="image" separator="," index="inx">
+			(
+			'SI'
+			, 'PF'
+			, #{id}
+			, #{image}
+			, 1
+			, sysdate()
+			)
+		</foreach>
+	</insert>
+
+</mapper>
